@@ -80,10 +80,10 @@ if [ -z "$DEVS" ] ; then
 fi
 for d in $DEVS ; do
 	for p in $(ls /sys/class/infiniband/$d/ports/) ; do
-		for g in $(ls /sys/class/infiniband/$d/ports/$p/gids/) ; do
+		for g in $(ls -v /sys/class/infiniband/$d/ports/$p/gids/) ; do
 			gid=$(cat /sys/class/infiniband/$d/ports/$p/gids/$g);
 			if [ $gid = 0000:0000:0000:0000:0000:0000:0000:0000 ] ; then
-				continue
+				break
 			fi
 			if [ $gid = fe80:0000:0000:0000:0000:0000:0000:0000 ] ; then
 				continue
